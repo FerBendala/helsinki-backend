@@ -26,10 +26,11 @@ blogsRouter.post( '/', async ( request, response ) => {
     } )
 
     const savedBlog = await newBlog.save()
-    response.status( 201 ).json( savedBlog )
+    response.json( savedBlog )
 } )
 
 blogsRouter.delete( '/:id', async ( request, response ) => {
+    console.log( request.params.id )
     await Blog.findByIdAndRemove( request.params.id )
     response.status( 204 ).end()
 } )
