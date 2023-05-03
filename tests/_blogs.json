@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Este es un título cualquiera",
+        "author": "Fernando Bendala",
+        "url": "www.ferbendala.com",
+        "likes": 5,
+        "id": "6452233d6986c5474c172bbb"
+    },
+    {
+        "title": "Erase una vez en un lugar de La Mancha...",
+        "author": "Cervantes",
+        "url": "www.cervantes.com",
+        "likes": 4,
+        "id": "6452233d6986c5474c172bbd"
+    },
+    {
+        "title": "Su novio es fotografo, biógrafo y no se que...",
+        "author": "Sonia Valle",
+        "url": "www.soniavalle.com",
+        "likes": 4,
+        "id": "6452233d6986c5474c172bbf"
+    },
+    {
+        "title": "Como ser político",
+        "author": "Felipe González",
+        "url": "www.felipegonzalez.com",
+        "likes": 2,
+        "id": "6452233d6986c5474c172bb9"
+    }
+]
