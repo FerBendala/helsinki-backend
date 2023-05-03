@@ -60,7 +60,7 @@ describe( 'viewing a specific blog', () => {
     test( 'fails with statuscode 400 id is invalid', async () => {
         const invalidId = '5a3d5da59070081a82a3445'
         await api
-            .get( `/api/notes/${invalidId}` )
+            .get( `/api/blogs/${invalidId}` )
             .expect( 400 )
     } )
 } )
