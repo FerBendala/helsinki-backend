@@ -16,16 +16,16 @@ usersRouter.get( '/', async ( request, response ) => {
 } )
 
 usersRouter.post( '/', async ( request, response ) => {
-    const body = request.body
+    const { username, name, password } = request.body
 
     const saltRounds = 10
     const passwordHash = await bcrypt.hash(
-        body.password, saltRounds
+        password, saltRounds
     )
 
     const user = new User( {
-        username: body.username,
-        name: body.name,
+        username: username,
+        name: name,
         passwordHash,
     } )
 
