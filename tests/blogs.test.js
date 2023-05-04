@@ -3,7 +3,7 @@ const supertest = require( 'supertest' )
 const helper = require( './utils/test_helper' )
 const app = require( '../app.js' )
 const api = supertest( app )
-const Blog = require( '../models/blogs' )
+const Blog = require( '../models/blog' )
 
 
 beforeEach( async () => {
