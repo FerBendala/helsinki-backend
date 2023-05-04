@@ -1,5 +1,5 @@
-const Blog = require( '../models/blogs' )
-const initialBlogs = require( './_blogs.json' )
+const Blog = require( '../../models/blogs' )
+const initialBlogs = require( '../db/blogs.json' )
 
 const nonExistingId = async () => {
     const newBlog = new Blog( {

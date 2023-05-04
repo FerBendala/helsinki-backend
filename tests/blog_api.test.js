@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose' )
 const supertest = require( 'supertest' )
-const helper = require( './test_helper' )
+const helper = require( './utils/test_helper' )
 const app = require( '../app.js' )
 const api = supertest( app )
 const Blog = require( '../models/blogs' )
@@ -152,6 +152,30 @@ describe( 'deletion of a blog', () => {
         expect( titles ).not.toContain( blogToDelete.title )
     } )
 } )
+
+describe( 'update information of a blog', () => {
+    test( 'succeeds with status code 200 if update blog is valid', async () => {
+        const blogsAtStart = await helper.blogsInDb()
+        const blogToUpdate = blogsAtStart[0]
+        const updatedBlog = {
+            ...blogsAtStart[0],
+            title: 'Mentir a los demás es como mentirse a uno mismo',
+        }
+
+        await api
+            .put( `/api/blogs/${blogToUpdate.id}` )
+            .send( updatedBlog )
+            .expect( 200 )
+            .expect( 'Content-Type', /application\/json/ )
+
+        const blogsAtEnd = await helper.blogsInDb()
+        expect( blogsAtEnd ).toHaveLength( helper.initialBlogs.length )
+
+        const titles = blogsAtEnd.map( r => r.title )
+        expect( titles ).toContain( updatedBlog.title )
+    } )
+} )
+
 
 afterAll( () => {
     mongoose.connection.close()
