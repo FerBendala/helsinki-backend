@@ -1,26 +1,39 @@
 const mongoose = require( 'mongoose' )
 const uniqueValidator = require( 'mongoose-unique-validator' )
+const bcrypt = require( 'bcrypt' )
 
 
 const userSchema = new mongoose.Schema( {
     username: {
         type: String,
-        unique: true
+        minLength: 3,
+        unique: true,
     },
     name: String,
-    passwordHash: String,
+    password: {
+        type: String,
+        minLength: 3,
+        required: true,
+    },
     blogs: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Blog'
+            ref: 'Blog',
         }
     ],
 } )
 
 userSchema
     .plugin( uniqueValidator )
+    .pre( 'save', async function ( next ) {
+        const saltRounds = 10
+        const paswordHash = await bcrypt.hash(
+            this.password, saltRounds
+        )
+        this.password = paswordHash
 
-userSchema
+        next()
+    } )
     .set( 'toJSON', {
         transform: ( document, returnedObject ) => {
             returnedObject.id = returnedObject._id.toString()
