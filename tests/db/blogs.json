@@ -2,37 +2,25 @@
     {
         "title": "Mentir a los demás es como mentirse a uno mismo",
         "author": "Fernando Bendala",
-        "url": "www.ferbendala.com/como-molo-molo-mucho",
+        "url": "www.blog.com/mentir-a-los-demas-es-como-mentirse-a-uno-mismo/",
         "likes": 4,
-        "user": {
-            "username": "FerBendala",
-            "name": "Fernando Bendala",
-            "id": "64542a6cbf4889e3f4011be5"
-        },
+        "userId": "64542a42bf4889e3f4011bdb",
         "id": "64542d4f90ce9406b29ab667"
     },
     {
-        "title": "La corona de la vida está en el ejercicio de la propia elección. ",
-        "author": "Fernando Bendala",
-        "url": "www.ferbendala.com/La-corona-d",
+        "title": "La corona de la vida está en el ejercicio de la propia elección",
+        "author": "Julio César",
+        "url": "www.blog.com/La-corona-de-la-vida-esta-en-el-ejercicio-de-la-propia-elección/",
         "likes": 4,
-        "user": {
-            "username": "FerBendala",
-            "name": "Fernando Bendala",
-            "id": "64542a6cbf4889e3f4011be5"
-        },
+        "userId": "64542a42bf4889e3f4011bdb",
         "id": "6454a261b10af9984fb3756a"
     },
     {
-        "title": "Esgto no es solo otro blog de Fernando",
-        "author": "Fernando Bendala",
-        "url": "www.ferbendala.com/solo-es-otro-blog-de-fernando",
+        "title": "Llevo viva desde que yo recuerdo",
+        "author": "Suzanne. Ojos locos",
+        "url": "www.blog.com/llevo-viva-desde-que-yo-recuerdo/",
         "likes": 4,
-        "user": {
-            "username": "FerBendala",
-            "name": "Fernando Bendala",
-            "id": "64542a6cbf4889e3f4011be5"
-        },
+        "userId": "64542a42bf4889e3f4011bdb",
         "id": "6454a30a18a15e2959aa9d74"
     }
 ]

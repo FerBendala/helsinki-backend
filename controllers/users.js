@@ -13,10 +13,14 @@ usersRouter.get( '/', async ( request, response ) => {
 } )
 
 usersRouter.post( '/', async ( request, response ) => {
+    // Set variables
     const { username, name, password } = request.body
+
+    // Save new user
     const user = new User( { username, name, password } )
     const savedUser = await user.save()
 
+    // Return saved user
     response.json( savedUser )
 } )
 

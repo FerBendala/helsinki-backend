@@ -1,6 +1,7 @@
 const Blog = require( '../../models/blog' )
 const User = require( '../../models/user' )
 const initialBlogs = require( '../db/blogs.json' )
+const initialUsers = require( '../db/users.json' )
 
 const nonExistingId = async () => {
     const newBlog = new Blog( {
@@ -30,5 +31,6 @@ module.exports = {
     initialBlogs,
     nonExistingId,
     blogsInDb,
-    usersInDb
+    initialUsers,
+    usersInDb,
 }

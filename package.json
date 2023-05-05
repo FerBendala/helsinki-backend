@@ -12,7 +12,7 @@
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
     "lint": "eslint .",
-    "test": "cross-env NODE_ENV=test jest --verbose --runInBand  --testNamePattern='succeeds with status code 204 if update blog is valid' --config=jest.config.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand  --testNamePattern='fails with status code 400 if token don' --config=jest.config.js",
     "test:all": "cross-env NODE_ENV=test jest --verbose --runInBand --config=jest.config.js"
   },
   "author": "",

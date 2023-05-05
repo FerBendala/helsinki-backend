@@ -5,8 +5,10 @@ const User = require( '../models/user' )
 
 
 loginRouter.post( '/', async ( request, response ) => {
+    // Set variables
     const { username, password } = request.body
 
+    // Verify if user exists and check if password is correct
     const user = await User.findOne( { username } )
     const passwordCorrect = user === null
         ? false
@@ -18,17 +20,18 @@ loginRouter.post( '/', async ( request, response ) => {
         } )
     }
 
+    // If user is verificated generate new token
     const userForToken = {
         username: user.username,
         id: user._id,
     }
-
     const token = jwt.sign(
         userForToken,
         process.env.JWT_SECRET,
         { expiresIn: 60 * 60 }
     )
 
+    // Return status 200 with user data
     response
         .status( 200 )
         .send( {
