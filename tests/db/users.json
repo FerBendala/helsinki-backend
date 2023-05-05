@@ -2,6 +2,6 @@
     {
         "username": "root",
         "name": "SuperAdmin",
-        "id": "64542a42bf4889e3f4011bdb"
+        "password": "rootSuperAdmin"
     }
 ]

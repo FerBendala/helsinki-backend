@@ -4,8 +4,6 @@ const helper = require( './utils/test_helper' )
 const app = require( '../app.js' )
 const api = supertest( app )
 const Blog = require( '../models/blog' )
-const User = require( '../models/user' )
-const bcrypt = require( 'bcrypt' )
 const jwt = require( 'jsonwebtoken' )
 
 const global = {
@@ -13,28 +11,8 @@ const global = {
     userId: ''
 }
 
-const testUser = {
-    username: 'FerBendala',
-    name: 'Fernando Bendala',
-    password: 'fernandobendala1990'
-}
-
-const createUser = async () => {
-    await User.deleteMany( {} )
-
-    const passwordHash = await bcrypt.hash( testUser.password, 10 )
-    const user = new User( {
-        username: testUser.username,
-        name: testUser.name,
-        password: passwordHash
-    } )
-
-    const savedUser = await user.save()
-    return savedUser.id
-}
-
 beforeEach( async () => {
-    global.userId = await createUser()
+    global.userId = await helper.createUser()
     global.token = jwt.sign(
         { _id: global.userId },
         process.env.JWT_SECRET,
@@ -244,7 +222,6 @@ describe( 'update information of a blog', () => {
         expect( titles ).toContain( updatedBlog.title )
     } )
 } )
-
 
 afterAll( () => {
     mongoose.connection.close()
