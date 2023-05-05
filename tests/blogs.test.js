@@ -6,12 +6,11 @@ const api = supertest( app )
 const Blog = require( '../models/blog' )
 const jwt = require( 'jsonwebtoken' )
 
-const global = {
-    token: '',
-    userId: ''
-}
+
+const global = { token: '', userId: '' }
 
 beforeEach( async () => {
+    // Create new user and token for unit tests
     global.userId = await helper.createUser()
     global.token = jwt.sign(
         { _id: global.userId },
@@ -19,6 +18,7 @@ beforeEach( async () => {
         { expiresIn: '1h' }
     )
 
+    // Create blogs
     await Blog.deleteMany( {} )
     for ( let blog in helper.initialBlogs ) {
         const blogs = helper.initialBlogs
