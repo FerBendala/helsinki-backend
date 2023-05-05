@@ -16,25 +16,28 @@ blogsRouter.get( '/', async ( request, response ) => {
 } )
 
 blogsRouter.post( '/', async ( request, response ) => {
-    const body = request.body
-    const decodedToken = jwt.verify(
-        request.token, process.env.JWT_SECRET
-    )
+    // Set variables
+    const token = request.token
+    const { title, author, url, likes, _id } = request.body
 
-    if ( !decodedToken._id ) {
+    // Verify if token is matching with SecretKey
+    const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
+    if ( !decodedToken._id )
         return response
             .status( 401 )
-            .json( { error: 'token missing or invalid' } )
-    }
+            .json( { error: 'invalid user' } )
 
-    const user = await User
-        .findById( decodedToken._id )
 
+    // Find if token has a valid user id
+    const tokenWithUserId = decodedToken._id
+    const user = await User.findById( tokenWithUserId )
+
+    // Set new Blog Schema
     const newBlog = new Blog( {
-        title: body.title,
-        author: body.author,
-        url: body.url,
-        likes: body.likes,
+        title: title,
+        author: author,
+        url: url,
+        likes: likes,
         user: user._id
     } )
 
@@ -48,32 +51,65 @@ blogsRouter.post( '/', async ( request, response ) => {
 blogsRouter.get( '/:id', async ( request, response ) => {
     const blog = await Blog.findById( request.params.id )
 
-    if ( blog ) {
+    // Return blog if exists
+    if ( blog )
         response.json( blog )
-    } else {
+    else
         response.status( 404 ).end()
-    }
 } )
 
 blogsRouter.delete( '/:id', async ( request, response ) => {
-    await Blog.findByIdAndRemove( request.params.id )
-    response.status( 204 ).end()
+    // Set variables
+    const [token, user] = [request.token, request.user]
+
+    // Verify if token is matching with SecretKey
+    const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
+    if ( !decodedToken._id )
+        return response
+            .status( 401 )
+            .json( { error: 'invalid user' } )
+
+    // Delete blog if the userId is matching with decoded token id
+    const tokenWithUserId = decodedToken._id
+    if ( user.toString() === tokenWithUserId.toString() ) {
+        await Blog.findByIdAndRemove( request.params.id )
+        response.status( 204 ).end()
+    } else {
+        return response.status( 401 ).json( { error: 'unauthorized' } )
+    }
 } )
 
 blogsRouter.put( '/:id', async ( request, response ) => {
-    const body = request.body
-    const existingBlog = {
-        title: body.title,
-        author: body.author,
-        url: body.url,
-        likes: body.likes,
+    // Set variables
+    const [token, user] = [request.token, request.user]
+    const { title, author, url, likes } = request.body
+
+    // Verify if token is matching with SecretKey
+    const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
+    if ( !decodedToken._id )
+        return response
+            .status( 401 )
+            .json( { error: 'token missing or invalid' } )
+
+    // Get elements from request and set new data for Blog Schema
+    const tokenWithUserId = decodedToken._id
+    const existingBlog = { title, author, url, likes }
+
+    // Update blog if the userId is matching with decoded token id
+    if ( user.toString() === tokenWithUserId.toString() ) {
+        const updatedBlog = await Blog
+            .findByIdAndUpdate(
+                request.params.id,
+                existingBlog,
+                { new: true }
+            )
+
+        response.json( updatedBlog )
+    } else {
+        return response
+            .status( 401 )
+            .json( { error: 'unauthorized' } )
     }
-
-    const updatedBlog = await Blog.findByIdAndUpdate(
-        request.params.id, existingBlog, { new: true }
-    )
-
-    response.json( updatedBlog )
 } )
 
 module.exports = blogsRouter

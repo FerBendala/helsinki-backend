@@ -1,0 +1,30 @@
+[
+    {
+        "username": "root",
+        "name": "SuperAdmin",
+        "blogs": [],
+        "id": "64542a42bf4889e3f4011bdb"
+    },
+    {
+        "username": "FerBendala",
+        "name": "Fernando Bendala",
+        "blogs": [
+            {
+                "title": "Mentir a los demás es como mentirse a uno mismo",
+                "author": "Fernando Bendala",
+                "id": "64542d4f90ce9406b29ab667"
+            },
+            {
+                "title": "La corona de la vida está en el ejercicio de la propia elección. ",
+                "author": "Fernando Bendala",
+                "id": "6454a261b10af9984fb3756a"
+            },
+            {
+                "title": "Esgto no es solo otro blog de Fernando",
+                "author": "Fernando Bendala",
+                "id": "6454a30a18a15e2959aa9d74"
+            }
+        ],
+        "id": "64542a6cbf4889e3f4011be5"
+    }
+]

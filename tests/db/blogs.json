@@ -1,30 +1,38 @@
 [
     {
-        "title": "Este es un título cualquiera",
+        "title": "Mentir a los demás es como mentirse a uno mismo",
         "author": "Fernando Bendala",
-        "url": "www.ferbendala.com",
-        "likes": 5,
-        "id": "6452233d6986c5474c172bbb"
-    },
-    {
-        "title": "Erase una vez en un lugar de La Mancha...",
-        "author": "Cervantes",
-        "url": "www.cervantes.com",
+        "url": "www.ferbendala.com/como-molo-molo-mucho",
         "likes": 4,
-        "id": "6452233d6986c5474c172bbd"
+        "user": {
+            "username": "FerBendala",
+            "name": "Fernando Bendala",
+            "id": "64542a6cbf4889e3f4011be5"
+        },
+        "id": "64542d4f90ce9406b29ab667"
     },
     {
-        "title": "Su novio es fotografo, biógrafo y no se que...",
-        "author": "Sonia Valle",
-        "url": "www.soniavalle.com",
+        "title": "La corona de la vida está en el ejercicio de la propia elección. ",
+        "author": "Fernando Bendala",
+        "url": "www.ferbendala.com/La-corona-d",
         "likes": 4,
-        "id": "6452233d6986c5474c172bbf"
+        "user": {
+            "username": "FerBendala",
+            "name": "Fernando Bendala",
+            "id": "64542a6cbf4889e3f4011be5"
+        },
+        "id": "6454a261b10af9984fb3756a"
     },
     {
-        "title": "Como ser político",
-        "author": "Felipe González",
-        "url": "www.felipegonzalez.com",
-        "likes": 2,
-        "id": "6452233d6986c5474c172bb9"
+        "title": "Esgto no es solo otro blog de Fernando",
+        "author": "Fernando Bendala",
+        "url": "www.ferbendala.com/solo-es-otro-blog-de-fernando",
+        "likes": 4,
+        "user": {
+            "username": "FerBendala",
+            "name": "Fernando Bendala",
+            "id": "64542a6cbf4889e3f4011be5"
+        },
+        "id": "6454a30a18a15e2959aa9d74"
     }
 ]

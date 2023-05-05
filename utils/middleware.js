@@ -41,6 +41,14 @@ const tokenExtractor = ( request, response, next ) => {
     if ( authorization && authorization.toLowerCase().startsWith( 'bearer ' ) ) {
         request.token = authorization.substring( 7 )
     }
+
+    next()
+}
+
+const userExtractor = ( request, response, next ) => {
+    const userId = request.get( 'User-Id' )
+    request.user = userId
+
     next()
 }
 
@@ -49,4 +57,5 @@ module.exports = {
     unknownEndpoint,
     errorHandler,
     tokenExtractor,
+    userExtractor,
 }
