@@ -1,0 +1,11 @@
+PUT http://localhost:3001/api/blogs/6455ebc38a9ab53730c5f641 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDU1ZWIyNThhOWFiNTM3MzBjNWY2M2IifQ.z-nix9Ok0I__O2c1LGqG-MyetPvNGuxvBMyIhPiZDjfXSE3IlVjGqovGPev4pkV-nDBhcN5yngxFwR2ArXe5WQ
+Content-Type: application/json
+User-Id: 6455eb258a9ab53730c5f63b
+
+{
+    "title": "Mentir a los demás es como mentirse a uno mismo",
+    "author": "Fernando Bendala",
+    "url": "www.ferbendala.com/mentir-a-los-demas-es-como-mentirse-a-uno-mismo",
+    "likes": 5
+}
