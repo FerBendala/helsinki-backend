@@ -134,7 +134,7 @@ describe( 'addition of a new blog', () => {
         expect( lastBlogAdded.likes ).toEqual( 0 )
     } )
 
-    test( 'fails with status code 400 if token don\'t match with headers', async () => {
+    test( 'fails with status code 401 if token don\'t match with headers', async () => {
         const newBlog = {
             title: 'El honor consiste en hacer hermoso aquello que uno está obligado a realizar',
             author: 'Alfred Victor de Vigny',
@@ -148,7 +148,7 @@ describe( 'addition of a new blog', () => {
             .set( 'Authorization', `${global.token}` )
             .set( 'User-Id', global.userId )
             .send( newBlog )
-            .expect( 400 )
+            .expect( 401 )
 
         const blogsAtEnd = await helper.blogsInDb()
         expect( blogsAtEnd ).toHaveLength(
