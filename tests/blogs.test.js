@@ -13,7 +13,7 @@ beforeEach( async () => {
     // Create new user and token for unit tests
     global.userId = await helper.createUser()
     global.token = jwt.sign(
-        { _id: global.userId },
+        { id: global.userId },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
     )
@@ -85,14 +85,12 @@ describe( 'addition of a new blog', () => {
             title: 'El honor consiste en hacer hermoso aquello que uno está obligado a realizar',
             author: 'Alfred Victor de Vigny',
             url: 'www.blog.com/el-honor-consiste-en-hacer-hermoso-aquello-que-uno-esta-obligado-a-realizar/',
-            likes: 3,
-            userId: global.userId,
+            likes: 3
         }
 
         await api
             .post( '/api/blogs' )
             .set( 'Authorization', `Bearer ${global.token}` )
-            .set( 'User-Id', global.userId )
             .send( newBlog )
             .expect( 200 )
             .expect( 'Content-Type', /application\/json/ )
@@ -113,14 +111,12 @@ describe( 'addition of a new blog', () => {
         const newBlog = {
             title: 'El honor consiste en hacer hermoso aquello que uno está obligado a realizar',
             author: 'Alfred Victor de Vigny',
-            url: 'www.blog.com/el-honor-consiste-en-hacer-hermoso-aquello-que-uno-esta-obligado-a-realizar/',
-            userId: global.userId,
+            url: 'www.blog.com/el-honor-consiste-en-hacer-hermoso-aquello-que-uno-esta-obligado-a-realizar/'
         }
 
         await api
             .post( '/api/blogs' )
             .set( 'Authorization', `Bearer ${global.token}` )
-            .set( 'User-Id', global.userId )
             .send( newBlog )
             .expect( 200 )
             .expect( 'Content-Type', /application\/json/ )
@@ -139,14 +135,12 @@ describe( 'addition of a new blog', () => {
             title: 'El honor consiste en hacer hermoso aquello que uno está obligado a realizar',
             author: 'Alfred Victor de Vigny',
             url: 'www.blog.com/el-honor-consiste-en-hacer-hermoso-aquello-que-uno-esta-obligado-a-realizar/',
-            likes: 3,
-            userId: global.userId,
+            likes: 3
         }
 
         await api
             .post( '/api/blogs' )
             .set( 'Authorization', `${global.token}` )
-            .set( 'User-Id', global.userId )
             .send( newBlog )
             .expect( 401 )
 
@@ -159,14 +153,12 @@ describe( 'addition of a new blog', () => {
     test( 'fails with status code 400 if data is invalid', async () => {
         const newBlog = {
             author: 'Julio César',
-            likes: 5,
-            userId: global.userId,
+            likes: 5
         }
 
         await api
             .post( '/api/blogs' )
             .set( 'Authorization', `Bearer ${global.token}` )
-            .set( 'User-Id', global.userId )
             .send( newBlog )
             .expect( 400 )
 

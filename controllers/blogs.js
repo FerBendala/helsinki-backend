@@ -18,18 +18,18 @@ blogsRouter.get( '/', async ( request, response ) => {
 blogsRouter.post( '/', async ( request, response ) => {
     // Set variables
     const token = request.token
-    const { title, author, url, likes, _id } = request.body
+    const { title, author, url, likes } = request.body
 
     // Verify if token is matching with SecretKey
     const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
-    if ( !decodedToken._id )
+    if ( !decodedToken.id )
         return response
             .status( 401 )
             .json( { error: 'invalid user' } )
 
 
     // Find if token has a valid user id
-    const tokenWithUserId = decodedToken._id
+    const tokenWithUserId = decodedToken.id
     const user = await User.findById( tokenWithUserId )
 
     // Set new Blog Schema
@@ -64,13 +64,13 @@ blogsRouter.delete( '/:id', async ( request, response ) => {
 
     // Verify if token is matching with SecretKey
     const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
-    if ( !decodedToken._id )
+    if ( !decodedToken.id )
         return response
             .status( 401 )
             .json( { error: 'invalid user' } )
 
     // Delete blog if the userId is matching with decoded token id
-    const tokenWithUserId = decodedToken._id
+    const tokenWithUserId = decodedToken.id
     if ( user.toString() === tokenWithUserId.toString() ) {
         await Blog.findByIdAndRemove( request.params.id )
         response.status( 204 ).end()
@@ -86,13 +86,13 @@ blogsRouter.put( '/:id', async ( request, response ) => {
 
     // Verify if token is matching with SecretKey
     const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
-    if ( !decodedToken._id )
+    if ( !decodedToken.id )
         return response
             .status( 401 )
             .json( { error: 'token missing or invalid' } )
 
     // Get elements from request and set new data for Blog Schema
-    const tokenWithUserId = decodedToken._id
+    const tokenWithUserId = decodedToken.id
     const existingBlog = { title, author, url, likes }
 
     // Update blog if the userId is matching with decoded token id
