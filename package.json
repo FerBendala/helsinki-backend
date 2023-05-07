@@ -1,7 +1,7 @@
 {
-  "name": "part4",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple database connection with user authentication",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",

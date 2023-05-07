@@ -6,8 +6,8 @@ const api = supertest( app )
 const Blog = require( '../models/blog' )
 const jwt = require( 'jsonwebtoken' )
 
-
 const global = { token: '', userId: '' }
+
 
 beforeEach( async () => {
     // Create new user and token for unit tests
