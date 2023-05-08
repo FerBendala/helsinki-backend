@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema( {
 userSchema
     .plugin( uniqueValidator )
     .pre( 'save', async function ( next ) {
+        if ( !this.isModified( 'password' ) ) {
+            return next()
+        }
+
         const saltRounds = 10
         const paswordHash = await bcrypt.hash(
             this.password, saltRounds
