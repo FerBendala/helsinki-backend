@@ -60,7 +60,7 @@ blogsRouter.get( '/:id', async ( request, response ) => {
 
 blogsRouter.delete( '/:id', async ( request, response ) => {
     // Set variables
-    const [token, user] = [request.token, request.user]
+    const token = request.token
 
     // Verify if token is matching with SecretKey
     const decodedToken = jwt.verify( token, process.env.JWT_SECRET )
@@ -71,7 +71,7 @@ blogsRouter.delete( '/:id', async ( request, response ) => {
 
     // Delete blog if the userId is matching with decoded token id
     const tokenWithUserId = decodedToken.id
-    if ( user.toString() === tokenWithUserId.toString() ) {
+    if ( tokenWithUserId.toString() ) {
         await Blog.findByIdAndRemove( request.params.id )
         response.status( 204 ).end()
     } else {
@@ -81,7 +81,7 @@ blogsRouter.delete( '/:id', async ( request, response ) => {
 
 blogsRouter.put( '/:id', async ( request, response ) => {
     // Set variables
-    const [token, user] = [request.token, request.user]
+    const token = request.token
     const { title, author, url, likes } = request.body
 
     // Verify if token is matching with SecretKey
@@ -96,7 +96,7 @@ blogsRouter.put( '/:id', async ( request, response ) => {
     const existingBlog = { title, author, url, likes }
 
     // Update blog if the userId is matching with decoded token id
-    if ( user.toString() === tokenWithUserId.toString() ) {
+    if ( tokenWithUserId.toString() ) {
         const updatedBlog = await Blog
             .findByIdAndUpdate(
                 request.params.id,
